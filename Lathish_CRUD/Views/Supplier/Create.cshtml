@@ -1,0 +1,45 @@
+﻿@model Lathish_CRUD.Models.Supplier
+
+@{
+    ViewBag.Title = "Create Supplier";
+}
+
+<h2>Create Supplier</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.GstNo)
+        @Html.TextBoxFor(m => m.GstNo, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactNo)
+        @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Product Categories</label>
+        @foreach (var category in ViewBag.ProductCategories as IEnumerable<Lathish_CRUD.Models.ProductCategory>)
+        {
+            <div>
+                <input type="checkbox" name="selectedProductCategories" value="@category.ProductCategoryId" />
+                @category.Name
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+}

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Search Products by Category and Supplier";
+}
+
+<h2>Search Products by Category and Supplier</h2>
+
+@using (Html.BeginForm("Search", "Product", FormMethod.Post))  // Ensure this is using the correct controller/action
+{
+    <div class="form-group">
+        <label for="searchTerm">Search for Product Category or Supplier</label>
+        <input type="text" id="searchTerm" name="searchTerm" class="form-control" placeholder="Enter category name or supplier name" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+
+<hr />
+
+<h3>Search Results</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Supplier Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.Products != null)
+        {
+            foreach (var result in ViewBag.Products as List<Lathish_CRUD.Models.Search>)
+            {
+                <tr>
+                    <td>@result.CategoryName</td>
+                    <td>@result.supplierName</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,51 @@
+﻿@model Lathish_CRUD.Models.Supplier
+
+@{
+    ViewBag.Title = "Edit Supplier";
+}
+
+<h2>Edit Supplier</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.LabelFor(m=>m.SupplierId)
+        @Html.HiddenFor(m => m.SupplierId, new { Value = Model.SupplierId })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.GstNo)
+        @Html.TextBoxFor(m => m.GstNo, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactNo)
+        @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Product Categories</label>
+
+        @foreach (var category in ViewBag.ProductCategories as IEnumerable<Lathish_CRUD.Models.ProductCategory>)
+        {
+            <div>
+                <input type="checkbox" name="selectedProductCategories" value="@category.ProductCategoryId"
+                       @(Model.ProductCategoryIds.Contains(category.ProductCategoryId) ? "checked" : "") />
+                @category.Name
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

@@ -1,0 +1,34 @@
+﻿@model Lathish_CRUD.Models.Supplier
+
+@{
+    ViewBag.Title = "Delete Supplier";
+}
+
+<h2>Delete Supplier</h2>
+
+<p>Are you sure you want to delete this supplier?</p>
+
+<div>
+    <strong></strong> @Model.SupplierId
+</div>
+<div>
+    <strong>@Model.Name</strong>
+</div>
+
+<div>
+    <strong>GST No:</strong> @Model.GstNo
+</div>
+<div>
+    <strong>Address:</strong> @Model.Address
+</div>
+<div>
+    <strong>Contact No:</strong> @Model.ContactNo
+</div>
+
+@using (Html.BeginForm("Delete", "Supplier", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.SupplierId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Index", "Supplier")" class="btn btn-default">Cancel</a>
+}

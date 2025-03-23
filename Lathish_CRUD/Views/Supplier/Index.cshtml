@@ -1,0 +1,39 @@
+﻿
+@model IEnumerable<Lathish_CRUD.Models.Supplier>
+
+@{
+    ViewBag.Title = "Supplier List";
+}
+
+<h2>Supplier List</h2>
+
+<a href="@Url.Action("Create", "Supplier")" class="btn btn-primary">Add New Supplier</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>GST No</th>
+            <th>Address</th>
+            <th>Contact No</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var supplier in Model)
+        {
+            <tr>
+                <td>@supplier.Name</td>
+                <td>@supplier.GstNo</td>
+                <td>@supplier.Address</td>
+                <td>@supplier.ContactNo</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Supplier", new { id = supplier.SupplierId })" class="btn btn-primary">Edit</a> |
+                    <a href="@Url.Action("Delete", "Supplier", new { id = supplier.SupplierId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index","Customer")" class="btn btn-warning">Customer Management</a> 
